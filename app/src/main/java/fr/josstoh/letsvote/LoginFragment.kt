@@ -82,7 +82,7 @@ class LoginFragment : Fragment() {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
                 Log.d("SIGN-IN", "Connected as ${user.toString()}")
-                NavHostFragment.findNavController(this).popBackStack();
+                NavHostFragment.findNavController(this).popBackStack()
                 // ...
             } else {
                 // Sign in failed. If response is null the user canceled the
