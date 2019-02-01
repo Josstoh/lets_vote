@@ -7,19 +7,21 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="fr.josstoh.letsvote.ui.main.MainFragment"
-        android:label="MainFragment" >
+        android:name="fr.josstoh.letsvote.ui.home.HomeFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="fr.josstoh.letsvote.LoginFragment"
+        android:name="fr.josstoh.letsvote.ui.login.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/login_fragment" />
+    <action
+        android:id="@+id/action_global_groupsfragment"
+        app:destination="@id/mainFragment"
+        app:popUpTo="@+id/mainFragment"
+        app:popUpToInclusive="true" />
 </navigation>

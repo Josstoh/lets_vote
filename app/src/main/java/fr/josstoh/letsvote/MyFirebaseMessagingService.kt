@@ -13,6 +13,7 @@ import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import fr.josstoh.letsvote.ui.main.MainActivity
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {

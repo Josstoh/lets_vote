@@ -1,13 +1,14 @@
-package fr.josstoh.letsvote
+package fr.josstoh.letsvote.ui.main
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import fr.josstoh.letsvote.ui.main.MainFragment
+import fr.josstoh.letsvote.ui.login.LoginFragment
+import fr.josstoh.letsvote.R
 
-class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(),
+    LoginFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

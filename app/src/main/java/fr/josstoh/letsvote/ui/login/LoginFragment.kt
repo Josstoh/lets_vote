@@ -1,4 +1,4 @@
-package fr.josstoh.letsvote
+package fr.josstoh.letsvote.ui.login
 
 import android.app.Activity
 import android.content.Context
@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
-import fr.josstoh.letsvote.ui.main.MainViewModel
+import fr.josstoh.letsvote.R
 import java.util.*
 
 
@@ -83,7 +82,7 @@ class LoginFragment : Fragment() {
                 val user = FirebaseAuth.getInstance().currentUser
                 Log.d("SIGN-IN", "Connected as ${user.toString()}")
                 NavHostFragment.findNavController(this).popBackStack()
-                // ...
+                NavHostFragment.findNavController(this).navigate(R.id.action_global_groupsfragment)
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
@@ -120,6 +119,6 @@ class LoginFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                LoginFragment()
+            LoginFragment()
     }
 }

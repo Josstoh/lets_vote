@@ -1,4 +1,4 @@
-package fr.josstoh.letsvote.ui.main
+package fr.josstoh.letsvote.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -12,13 +12,14 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import fr.josstoh.letsvote.R
+import fr.josstoh.letsvote.ui.main.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
 
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = HomeFragment()
     }
 
     private lateinit var viewModel: MainViewModel
