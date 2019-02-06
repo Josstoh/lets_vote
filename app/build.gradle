@@ -17,6 +17,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "fr"
     }
+
+    dataBinding {
+        enabled = true
+    }
+    
     buildTypes {
         release {
             minifyEnabled false
@@ -31,6 +36,7 @@ dependencies {
 
     //Koin
     implementation 'org.koin:koin-android:1.0.2'
+    implementation 'org.koin:koin-android-viewmodel:1.0.2'
 
     // AndroidX
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
@@ -39,6 +45,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.6'

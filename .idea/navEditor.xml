@@ -8,7 +8,7 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="action_global_mainFragment">
+                  <entry key="action_global_groupsfragment">
                     <value>
                       <LayoutPositions />
                     </value>
@@ -21,15 +21,6 @@
                             <option name="x" value="-284" />
                             <option name="y" value="-59" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_loginFragment_to_mainFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
