@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/homeFragment"
         android:name="fr.josstoh.letsvote.ui.home.HomeFragment"
-        android:label="MainFragment"
+        android:label="HomeFragment"
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/open_group_from_homeFragment"
+            app:destination="@+id/groupFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -21,7 +24,16 @@
         tools:layout="@layout/login_fragment" />
     <action
         android:id="@+id/action_global_groupsfragment"
-        app:destination="@id/mainFragment"
-        app:popUpTo="@+id/mainFragment"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@+id/homeFragment"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="fr.josstoh.letsvote.ui.group.GroupFragment"
+        android:label="group_fragment"
+        tools:layout="@layout/group_fragment" >
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+    </fragment>
 </navigation>

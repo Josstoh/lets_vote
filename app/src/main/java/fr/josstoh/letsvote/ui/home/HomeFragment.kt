@@ -5,23 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.iid.FirebaseInstanceId
 import fr.josstoh.letsvote.R
-import fr.josstoh.letsvote.common.GroupQueryResults
-import fr.josstoh.letsvote.ui.main.MainViewModel
+import fr.josstoh.letsvote.viewmodel.GroupDisplayQueryResults
 import fr.josstoh.letsvote.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -47,11 +39,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<RecyclerView>(R.id.rv_groups).apply {
+        view.findViewById<RecyclerView>(R.id.rv_messages).apply {
             layoutManager = LinearLayoutManager(activity)
             val listAdapter = GroupListAdapter()
 
-            val groupsObserver = Observer<GroupQueryResults> {
+            val groupsObserver = Observer<GroupDisplayQueryResults> {
                 if (it != null) {
                     if (it.data != null) {
                         listAdapter.submitList(it.data)
@@ -77,7 +69,7 @@ class HomeFragment : Fragment() {
         val user = FirebaseAuth.getInstance().currentUser
 
 
-        FirebaseInstanceId.getInstance().instanceId
+        /*FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
                     Log.w("fcm", "getInstanceId failed", task.exception)
@@ -91,7 +83,7 @@ class HomeFragment : Fragment() {
                 //val msg = getString(R.string.msg_token_fmt, token)
                 Log.d("fcm", token)
                 Toast.makeText(activity, token, Toast.LENGTH_SHORT).show()
-            })
+            })*/
 
 /*        // Create a new user with a first and last name
         val newUser = HashMap<String, Any>()

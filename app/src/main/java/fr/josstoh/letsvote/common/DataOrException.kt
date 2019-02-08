@@ -1,6 +1,7 @@
 package fr.josstoh.letsvote.common
 
 import fr.josstoh.letsvote.data.model.Group
+import fr.josstoh.letsvote.data.model.Message
 
 /**
  * Generic holder for an object that either holds a result of a desired type,
@@ -14,20 +15,14 @@ data class DataOrException<out T, out E: Exception?>(val data: T?, val exception
  * a unique id to that item.
  */
 
-interface QueryItem<T> {
-    val item: T
-    val id: String
+open class QueryItem<out T>(private val _item: T, private val _id: String) {
+     val item: T
+         get() = _item
+     val id: String
+         get() = _id
 }
 
 typealias QueryItemOrException<T> = DataOrException<QueryItem<T>, Exception>
-
-
-data class GroupQueryItem(private val _item: Group, private val _id: String) : QueryItem<Group> {
-    override val item: Group
-        get() = _item
-    override val id: String
-        get() = _id
-}
 
 typealias GroupOrException = DataOrException<Group, Exception>
 
@@ -38,3 +33,5 @@ typealias GroupOrException = DataOrException<Group, Exception>
 typealias QueryResultsOrException<T, E> = DataOrException<List<QueryItem<T>>, E>
 
 typealias GroupQueryResults = QueryResultsOrException<Group, Exception>
+
+typealias MessageQueryResults = QueryResultsOrException<Message, Exception>

@@ -6,13 +6,14 @@
     >
 
     <data>
-        <variable name="group" type="fr.josstoh.letsvote.data.model.Group"/>
+        <variable name="group" type="fr.josstoh.letsvote.viewmodel.GroupDisplay"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground">
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
 
         <TextView
             android:id="@+id/tv_ticker"

@@ -9,16 +9,17 @@ import fr.josstoh.letsvote.config.AppExecutors
 import fr.josstoh.letsvote.data.model.Group
 import fr.josstoh.letsvote.data.model.groupDiffCallback
 import fr.josstoh.letsvote.databinding.GroupListItemBinding
+import fr.josstoh.letsvote.viewmodel.GroupDisplay
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
 internal class GroupListAdapter
-    : ListAdapter<QueryItem<Group>, GroupViewHolder>(asyncDifferConfig) {
+    : ListAdapter<QueryItem<GroupDisplay>, GroupViewHolder>(asyncDifferConfig) {
 
     companion object : KoinComponent {
         private val executors by inject<AppExecutors>()
         private val asyncDifferConfig =
-            AsyncDifferConfig.Builder<QueryItem<Group>>(groupDiffCallback)
+            AsyncDifferConfig.Builder<QueryItem<GroupDisplay>>(groupDiffCallback)
                 .setBackgroundThreadExecutor(executors.cpuExecutorService)
                 .build()
     }
@@ -33,6 +34,7 @@ internal class GroupListAdapter
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         val qItem = getItem(position)
         holder.binding.group = qItem.item
+
     }
 
 }

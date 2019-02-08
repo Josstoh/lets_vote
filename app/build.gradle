@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 28
@@ -21,7 +21,7 @@ android {
     dataBinding {
         enabled = true
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false
@@ -35,17 +35,19 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
 
     //Koin
-    implementation 'org.koin:koin-android:1.0.2'
-    implementation 'org.koin:koin-android-viewmodel:1.0.2'
+    implementation "org.koin:koin-android:$rootProject.koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
 
     // AndroidX
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
-    implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // Android Arch
+    implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.6'

@@ -1,13 +1,13 @@
 package fr.josstoh.letsvote.data.model
 
 import fr.josstoh.letsvote.utils.QueryItemDiffCallback
-import java.text.SimpleDateFormat
+import fr.josstoh.letsvote.viewmodel.GroupDisplay
 
 data class Group(
     var name: String = "",
     var users: List<String> = arrayListOf(),
     var messages: Array<String> = arrayOf()
-) {
+) : Any() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -29,4 +29,4 @@ data class Group(
     }
 }
 
-val groupDiffCallback = object : QueryItemDiffCallback<Group>() {}
+val groupDiffCallback = object : QueryItemDiffCallback<GroupDisplay>() {}
