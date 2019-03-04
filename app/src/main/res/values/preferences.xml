@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TOKEN_PREFERENCE_FILE_KEY">fr.josstoh.letsvote.PREFERENCE_FILE_KEY_FCM_TOKEN</string>
+    <string name="TOKEN_PREFERENCE_KEY_FCM_TOKEN">FCM_TOKEN</string>
+    <string name="TOKEN_PREFERENCE_KEY_ADD_TOKEN">ADD_TOKEN</string>
+</resources>

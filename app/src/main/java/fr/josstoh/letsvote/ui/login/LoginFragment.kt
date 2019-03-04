@@ -11,10 +11,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import fr.josstoh.letsvote.AddTokenWorker
 import fr.josstoh.letsvote.R
+import fr.josstoh.letsvote.data.model.User
+import fr.josstoh.letsvote.data.repo.UserRepository
+import org.koin.android.ext.android.inject
+import org.koin.standalone.inject
 import java.util.*
 
 
@@ -29,6 +37,8 @@ import java.util.*
  */
 class LoginFragment : Fragment() {
     private val RC_SIGN_IN: Int = 390
+
+    private val userRepo: UserRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +74,14 @@ class LoginFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                Log.d("SIGN-IN", "Connected as ${user.toString()}")
-                NavHostFragment.findNavController(this).popBackStack()
+                if(response?.isNewUser == true && user != null) {
+                    // Add new user to firestore
+                    userRepo.addNewUser(User(user.uid, user.displayName!!, user.email!!))
+
+                    val addTokenWork = OneTimeWorkRequestBuilder<AddTokenWorker>().build()
+                    WorkManager.getInstance().enqueueUniqueWork(getString(R.string.TOKEN_PREFERENCE_KEY_ADD_TOKEN), ExistingWorkPolicy.KEEP, addTokenWork)
+                }
+                Log.d("SIGN-IN", "Connected as ${user?.displayName}")
                 NavHostFragment.findNavController(this).navigate(R.id.action_global_groupsfragment)
             } else {
                 // Sign in failed. If response is null the user canceled the

@@ -68,54 +68,7 @@ class HomeFragment : Fragment() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-
-        /*FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w("fcm", "getInstanceId failed", task.exception)
-                    return@OnCompleteListener
-                }
-
-                // Get new Instance ID token
-                val token = task.result?.token
-
-                // Log and toast
-                //val msg = getString(R.string.msg_token_fmt, token)
-                Log.d("fcm", token)
-                Toast.makeText(activity, token, Toast.LENGTH_SHORT).show()
-            })*/
-
-/*        // Create a new user with a first and last name
-        val newUser = HashMap<String, Any>()
-        newUser["name"] = user?.displayName ?: ""
-        newUser["email"] = user?.email ?: ""
-
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(newUser)
-            .addOnSuccessListener { documentReference ->
-                Log.d("test", "DocumentSnapshot added with ID: " + documentReference.id)
-            }
-            .addOnFailureListener { e ->
-                Log.w("test", "Error adding document", e)
-            }
-        }*/
-
     }
 
-    override fun onStart() {
-        super.onStart()
-        auth.addAuthStateListener(authStateListener)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        auth.removeAuthStateListener(authStateListener)
-    }
-
-    private val authStateListener = FirebaseAuth.AuthStateListener { auth ->
-        if (auth.currentUser == null) {
-            NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_loginFragment)
-        }
-    }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import fr.josstoh.letsvote.common.MessageQueryResults
 import fr.josstoh.letsvote.config.AppExecutors
+import fr.josstoh.letsvote.data.model.Message
 import fr.josstoh.letsvote.data.repo.GroupsRepository
 
 class GroupViewModel(val repo : GroupsRepository, val executors: AppExecutors, val firestore: FirebaseFirestore) : ViewModel() {
@@ -13,5 +14,9 @@ class GroupViewModel(val repo : GroupsRepository, val executors: AppExecutors, v
     fun getAllMessages(groupId: String) : LiveData<MessageQueryResults> {
         val groupLiveData = repo.getMessagesFromGroup(groupId)
         return groupLiveData
+    }
+
+    fun sendMessage(groupId: String, user: String, message: String) {
+        repo.sendMessage(groupId, Message(user, message))
     }
 }

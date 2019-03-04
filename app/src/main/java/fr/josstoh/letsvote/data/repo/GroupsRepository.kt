@@ -1,7 +1,9 @@
 package fr.josstoh.letsvote.data.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import fr.josstoh.letsvote.common.GroupQueryResults
@@ -18,6 +20,7 @@ import org.koin.standalone.KoinComponent
 class GroupsRepository(val firestore: FirebaseFirestore) : KoinComponent {
 
     private val groupsCollection = firestore.collection("groups")
+    private val messagesCollection = firestore.collection("groups")
 
     fun getAllGroupsWhereUserIs(userRef: DocumentReference) : LiveData<GroupQueryResults> {
         //val query = groupsCollection.whereArrayContains("users", userRef).orderBy("name")
@@ -36,5 +39,18 @@ class GroupsRepository(val firestore: FirebaseFirestore) : KoinComponent {
         val queryObserver = DeserializingObserver(messagesLiveData, MessageDocumentSnapshotDeserializer())
         messagesLiveData.addSource(queryLiveData, queryObserver)
         return messagesLiveData
+    }
+
+    fun sendMessage(groupId: String, message: Message) : Task<DocumentReference> {
+        val newDoc = firestore.collection("groups").document(groupId).collection("messages").document()
+
+        return firestore.runTransaction {
+            it.set(newDoc, message)
+            newDoc
+        }.addOnSuccessListener { documentReference ->
+            Log.d("send", "Message sent with id: " + documentReference.id)
+        }.addOnFailureListener { e ->
+            Log.w("send", "Error adding document", e)
+        }
     }
 }
